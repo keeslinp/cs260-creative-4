@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "deploy": "rsync -r dist/* keeslinp.duckdns.org:/home/pearce/cs260-creative-3",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

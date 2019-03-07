@@ -1,27 +1,34 @@
 <template>
-  <div class="container">
-    <div class="search-form">
-      <md-field>
-        <label>Search a Website</label>
-        <md-input v-model="search"/>
-      </md-field>
-      <md-button v-on:click="loadPreview" class="md-raised md-primary">Search</md-button>
+  <div>
+    <div class="container">
+      <div class="search-form">
+        <md-field>
+          <label>Search a Website</label>
+          <md-input v-model="search"/>
+        </md-field>
+        <md-button v-on:click="loadPreview" class="md-raised md-primary">Search</md-button>
+      </div>
+      <div v-show="loading">loading...</div>
+      <md-card class="result" v-if="result !== null">
+        <md-card-header>
+          <md-card-header-text>
+            <div class="md-title">{{result.title}}</div>
+            <div class="md-subhead">{{result.description || 'No description'}}</div>
+          </md-card-header-text>
+        </md-card-header>
+        <md-card-media>
+          <img v-bind:src="result.image" alt="No image found">
+        </md-card-media>
+        <md-card-actions>
+          <md-button v-bind:href="fullUrl">Go There</md-button>
+        </md-card-actions>
+      </md-card>
     </div>
-    <div v-show="loading">loading...</div>
-    <md-card class="result" v-if="result !== null">
-      <md-card-header>
-        <md-card-header-text>
-          <div class="md-title">{{result.title}}</div>
-          <div class="md-subhead">{{result.description || 'No description'}}</div>
-        </md-card-header-text>
-      </md-card-header>
-      <md-card-media>
-        <img v-bind:src="result.image" alt="No image found">
-      </md-card-media>
-      <md-card-actions>
-        <md-button v-bind:href="fullUrl">Go There</md-button>
-      </md-card-actions>
-    </md-card>
+    <md-bottom-bar class="bottom-bar">
+      <md-bottom-bar-item href="https://github.com/keeslinp/cs260-creative-4">
+        <a>github link</a>
+      </md-bottom-bar-item>
+    </md-bottom-bar>
   </div>
 </template>
 
@@ -83,5 +90,9 @@ export default {
 }
 .container {
   margin: 20px;
+}
+.bottom-bar {
+  position: fixed;
+  bottom: 0px;
 }
 </style>
