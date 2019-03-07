@@ -1,11 +1,11 @@
 <template>
-  <div class="hello">
+  <div class="container">
     <div class="search-form">
       <md-field>
         <label>Search a Website</label>
         <md-input v-model="search"/>
       </md-field>
-      <md-button v-on:click="loadPreview">Search</md-button>
+      <md-button v-on:click="loadPreview" class="md-raised md-primary">Search</md-button>
     </div>
     <div v-show="loading">loading...</div>
     <md-card class="result" v-if="result !== null">
@@ -29,7 +29,8 @@
 import axios from "axios";
 
 // Be nice, don't suck
-const DEFINITELY_NOT_AN_4P1_K3Y = "5c7ecdb3e057229579d096935b2f86a4d4f1be47cb69c";
+const DEFINITELY_NOT_AN_4P1_K3Y =
+  "5c7ecdb3e057229579d096935b2f86a4d4f1be47cb69c";
 
 export default {
   name: "Search",
@@ -48,7 +49,11 @@ export default {
     loadPreview() {
       this.loading = true;
       this.error = axios
-        .get(`http://api.linkpreview.net/?key=${DEFINITELY_NOT_AN_4P1_K3Y}&q=${this.search}`)
+        .get(
+          `http://api.linkpreview.net/?key=${DEFINITELY_NOT_AN_4P1_K3Y}&q=${
+            this.search
+          }`
+        )
         .then(response => {
           console.log(response);
           this.result = response.data;
@@ -72,10 +77,11 @@ export default {
   display: flex;
   max-width: 400px;
   align-items: center;
-  margin: 20px;
 }
 .result {
   max-width: 400px;
+}
+.container {
   margin: 20px;
 }
 </style>
